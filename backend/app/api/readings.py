@@ -15,7 +15,7 @@ router = APIRouter(prefix="/api/readings", tags=["readings"])
 class ReadingIn(BaseModel):
     temperature: float
     humidity: float
-    timestamp: datetime | None = None  # optional: клиент может не прислать
+    timestamp: datetime | None = None
 
 class ReadingOut(ReadingIn):
     id: int
