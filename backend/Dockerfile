@@ -4,9 +4,11 @@ WORKDIR /app
 
 RUN pip install --no-cache-dir --upgrade pip poetry
 
+RUN poetry config virtualenvs.create false
+
 COPY pyproject.toml poetry.lock* /app/
-RUN poetry config virtualenvs.create false \
- && poetry install --no-interaction --no-ansi --only main
+
+RUN poetry install --no-interaction --no-ansi --only main --no-root
 
 COPY ./app /app/app
 

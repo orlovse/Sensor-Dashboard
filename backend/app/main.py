@@ -6,7 +6,6 @@ from datetime import datetime
 
 app = FastAPI(title="Real-Time Sensor Dashboard API")
 
-# CORS для фронта на 3000
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -23,7 +22,6 @@ async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
     try:
         while True:
-            # фейковое значение датчика
             reading = {
                 "timestamp": datetime.utcnow().isoformat(),
                 "sensor_id": 1,
