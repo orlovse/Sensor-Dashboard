@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: rsd_backend
+    ports: ["8000:8000"]
+    env_file: ./backend/.env
+    depends_on:
+      - db
+    networks: [rsd_net]
+
+  frontend:
+    build: ./frontend
+    container_name: rsd_frontend
+    ports: ["3000:3000"]
+    depends_on:
+      - backend
+    networks: [rsd_net]
+
+  db:
+    image: postgres:15-alpine
+    container_name: rsd_db
+    environment:
+      POSTGRES_USER: rsd
+      POSTGRES_PASSWORD: rsd
+      POSTGRES_DB: rsd
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks: [rsd_net]
+
+networks:
+  rsd_net:
+
+volumes:
+  db_data:
