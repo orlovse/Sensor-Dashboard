@@ -10,7 +10,7 @@ from ..api.deps import get_sensor_or_404
 from ..db.database import get_db
 from ..db.models import Reading, Sensor
 
-router = APIRouter(prefix="/api/readings", tags=["readings"])
+router = APIRouter(prefix="/api/readings", tags=["readings"], redirect_slashes=False)
 
 class ReadingIn(BaseModel):
     temperature: float
@@ -21,7 +21,7 @@ class ReadingOut(ReadingIn):
     id: int
     sensor_id: int
 
-@router.get("/", response_model=List[ReadingOut])
+@router.get("", response_model=List[ReadingOut])
 async def list_readings(
     sensor_id: int,
     limit: int = Query(100, le=500),
@@ -36,7 +36,7 @@ async def list_readings(
     readings = (await db.execute(stmt)).scalars().all()
     return readings
 
-@router.post("/", response_model=ReadingOut, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=ReadingOut, status_code=status.HTTP_201_CREATED)
 async def add_reading(
     sensor: Sensor = Depends(get_sensor_or_404),
     data: ReadingIn = ...,
