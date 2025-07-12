@@ -9,10 +9,20 @@ export function useSensors() {
 	});
 }
 
-export function useCreateSensor() {
+export function useSensorMutations() {
 	const qc = useQueryClient();
-	return useMutation({
-		mutationFn: (data: SensorIn) => api.createSensor(data),
-		onSuccess: () => qc.invalidateQueries({ queryKey: ['sensors'] }),
-	});
+	const invalidate = () => qc.invalidateQueries({ queryKey: ['sensors'] });
+
+	return {
+		create: useMutation({ mutationFn: api.createSensor, onSuccess: invalidate }),
+		update: useMutation({
+			mutationFn: ({ id, data }: { id: number; data: SensorIn }) =>
+				api.updateSensor(id, data),
+			onSuccess: invalidate,
+		}),
+		remove: useMutation({
+			mutationFn: api.deleteSensor,
+			onSuccess: invalidate,
+		}),
+	};
 }
