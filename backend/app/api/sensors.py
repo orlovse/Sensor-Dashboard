@@ -29,3 +29,27 @@ async def create_sensor(data: SensorIn, db: AsyncSession = Depends(get_db)):
     await db.commit()
     await db.refresh(sensor)
     return sensor
+
+@router.put("/{sensor_id}/", response_model=SensorOut)
+async def update_sensor(
+    sensor_id: int, data: SensorIn, db: AsyncSession = Depends(get_db)
+):
+    sensor = await db.get(Sensor, sensor_id)
+    if not sensor:
+        raise HTTPException(status_code=404, detail="Sensor not found")
+
+    sensor.name = data.name
+    sensor.location = data.location
+    await db.commit()
+    await db.refresh(sensor)
+    return sensor
+
+
+@router.delete("/{sensor_id}/", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_sensor(sensor_id: int, db: AsyncSession = Depends(get_db)):
+    sensor = await db.get(Sensor, sensor_id)
+    if not sensor:
+        raise HTTPException(status_code=404, detail="Sensor not found")
+
+    await db.delete(sensor)
+    await db.commit()
