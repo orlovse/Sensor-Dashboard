@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import type { Reading } from '@/services/api/types';
 import type { ColumnDef, SortingState } from '@tanstack/react-table';
+import styles from './ReadingsTable.module.css';
 
 const columns: ColumnDef<Reading>[] = [
 	{
@@ -39,9 +40,9 @@ function ReadingsTable({ data, isLoading }: {
 
 	if (isLoading) return <p>Loading data…</p>;
 
-	return (
-    	<div style={{ maxHeight: 260, overflowY: 'auto', marginTop: 24 }}>
-        <table>
+        return (
+        <div className={styles.wrapper}>
+        <table className={styles.table}>
             <thead>
                 {table.getHeaderGroups().map((hg) => (
                     <tr key={hg.id}>
@@ -49,7 +50,7 @@ function ReadingsTable({ data, isLoading }: {
                             <th
                                 key={h.id}
                                 onClick={h.column.getToggleSortingHandler()}
-                                style={{ cursor: 'pointer' }}
+                                className={styles.headerCell}
                             >
                                 {flexRender(h.column.columnDef.header, h.getContext())}
                                 {h.column.getIsSorted() === 'asc' ? ' ▲' : h.column.getIsSorted() === 'desc' ? ' ▼' : ''}

@@ -1,0 +1,21 @@
+.wrapper {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.headerCell {
+  cursor: pointer;
+  user-select: none;
+}

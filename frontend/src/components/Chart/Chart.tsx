@@ -1,10 +1,11 @@
 'use client';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 import type { Reading } from '@/services/api/types';
+import styles from './Chart.module.css';
 
 function Chart({ data }: { data: Reading[] }) {
-	return (
-        <div style={{ width: '100%', height: 300, marginTop: 24 }}>
+        return (
+        <div className={styles.chartWrapper}>
             <ResponsiveContainer>
                 <LineChart data={[...data].reverse()}>
                     <XAxis dataKey="timestamp" tickFormatter={(t) => new Date(t).toLocaleTimeString()} />
