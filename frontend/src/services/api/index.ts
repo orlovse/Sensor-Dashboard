@@ -41,7 +41,7 @@ export const http = {
 export const api = {
 	getSensors: () => http.get<Sensor[]>('/sensors'),
 	createSensor: (payload: SensorIn)=> http.post<SensorIn>('/sensors', payload),
-	updateSensor: (id: number, data: SensorIn) => http.put<Sensor>(`/sensors/${id}/`, data),
-	deleteSensor: (id: number) => http.delete<void>(`/sensors/${id}/`),
+  updateSensor: (id: number, data: SensorIn) => http.put<Sensor>(`/sensors/${id}`, data),
+  deleteSensor: (id: number) => http.delete<void>(`/sensors/${id}`),
 	getReadings: (sensorId: number, limit = 100) => http.get<Reading[]>(`/readings?sensor_id=${sensorId}&limit=${limit}`),
 };

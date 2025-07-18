@@ -48,6 +48,6 @@ async def websocket_endpoint(ws: WebSocket):
                 "humidity": round(random.uniform(40, 60), 1),
             }
             await ws.send_json(reading)
-            await asyncio.sleep(1)
+            await asyncio.sleep(4)
     except Exception:
         await ws.close()
