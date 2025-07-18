@@ -14,8 +14,8 @@ import type { Sensor } from '@/services/api/types';
 import type { SortingState } from '@tanstack/react-table';
 
 function SensorTable() {
-	const { data = [], isLoading } = useSensors();
-	const { remove } = useSensorMutations();
+        const { data = [], isLoading } = useSensors();
+        const { remove } = useSensorMutations();
         const [editSensor, setEditSensor] = useState<Sensor | undefined>(undefined);
         const [isOpen, setOpen] = useState(false);
         const [sorting, setSorting] = useState<SortingState>([]);
@@ -71,19 +71,27 @@ function SensorTable() {
 
         if (isLoading) return <p>Loading…</p>;
 
+        const handleAdd = () => {
+                setEditSensor(undefined);
+                setOpen(true);
+        };
+
         return (
                 <>
-                        <button
-                                className={styles.addButton}
-                                onClick={() => {
-                                        setEditSensor(undefined);
-                                        setOpen(true);
-                                }}
-                        >
-                                ➕ Add sensor
-                        </button>
+                        {data.length === 0 ? (
+                                <div className={styles.empty}>
+                                        <p>No sensors yet. Add your first sensor.</p>
+                                        <button className={styles.addButton} onClick={handleAdd}>
+                                                ➕ Add sensor
+                                        </button>
+                                </div>
+                        ) : (
+                                <>
+                                        <button className={styles.addButton} onClick={handleAdd}>
+                                                ➕ Add sensor
+                                        </button>
 
-                        <table className={styles.table}>
+                                        <table className={styles.table}>
                                 <thead>
                                         {table.getHeaderGroups().map((hg) => (
                                                 <tr key={hg.id}>
@@ -114,14 +122,16 @@ function SensorTable() {
                                         ))}
                                 </tbody>
                         </table>
+                                </>
+                        )}
 
-			<SensorFormDialog
-				open={isOpen}
-				onOpenChange={setOpen}
-				initial={editSensor}
-			/>
-		</>
-	);
+                        <SensorFormDialog
+                                open={isOpen}
+                                onOpenChange={setOpen}
+                                initial={editSensor}
+                        />
+                </>
+        );
 }
 
 export default SensorTable;
