@@ -1,6 +1,6 @@
 'use client';
 
-import SensorTable from '@/app/(dashboard)/sensors/_components/SensorsTable';
+import SensorTable from '@/app/(dashboard)/sensors/_components/SensorsTable/SensorsTable';
 
 function SensorsPage() {
 	return (

@@ -1,7 +1,11 @@
 .layoutContainer {
     display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .layoutMain {
-
+    width: 100%;
+    height: 100%;
+    padding: 24px;
 }

@@ -32,7 +32,6 @@ const eslintConfig = [
 			}],
 			'prefer-const': 'error',
 			'no-var': 'error',
-			'react/jsx-indent-props': ['error', 4],
 			'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
 			'react/prop-types': 'off',
 			'react/react-in-jsx-scope': 'off',

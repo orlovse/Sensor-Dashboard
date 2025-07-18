@@ -1,11 +1,26 @@
 .aside {
     width: 240px;
-}
-
-.navList {
-
+    background: var(--sidebar-bg);
+    color: var(--sidebar-color);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .navListItem {
+    padding: 12px;
+}
 
+.navListLink {
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.2s;
+
+    &:hover {
+        border-color: var(--sidebar-color);
+    }
+}
+
+.active {
+    border-color: var(--sidebar-color);
 }

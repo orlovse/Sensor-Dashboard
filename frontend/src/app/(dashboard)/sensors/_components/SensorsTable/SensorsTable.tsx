@@ -6,6 +6,7 @@ import {
 	flexRender,
 } from '@tanstack/react-table';
 import { useState } from 'react';
+import SensorFormDialog from '@/app/(dashboard)/sensors/_components/SensorFormDialog/SensorFormDialog';
 import { useSensorMutations, useSensors } from '@/hooks/useSensors';
 import type { Sensor } from '@/services/api/types';
 
@@ -59,6 +60,12 @@ function SensorTable() {
 					))}
 				</tbody>
 			</table>
+
+			<SensorFormDialog
+				open={isOpen}
+				onOpenChange={setOpen}
+				initial={editSensor}
+			/>
 		</>
 	);
 }

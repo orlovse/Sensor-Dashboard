@@ -1,12 +1,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --sidebar-bg: rgb(14, 25, 20);
+  --sidebar-color: white;
+  --sidebar-text: #111;
+  --sidebar-hover: #f3f4f6;
+  --accent: #3b82f6;
+  --content-bg: #fafafa;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --sidebar-bg: #1f2937;
+    --sidebar-text: #e5e7eb;
+    --sidebar-hover: #374151;
+    --content-bg: #111827;
   }
 }
 
@@ -33,6 +43,12 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
