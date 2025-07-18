@@ -1,0 +1,28 @@
+.addButton {
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 4px;
+}

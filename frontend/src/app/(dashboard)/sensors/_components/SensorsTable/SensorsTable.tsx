@@ -9,6 +9,7 @@ import { useState } from 'react';
 import SensorFormDialog from '@/app/(dashboard)/sensors/_components/SensorFormDialog/SensorFormDialog';
 import { useSensorMutations, useSensors } from '@/hooks/useSensors';
 import type { Sensor } from '@/services/api/types';
+import styles from './SensorsTable.module.css';
 
 function SensorTable() {
 	const { data = [], isLoading } = useSensors();
@@ -34,32 +35,42 @@ function SensorTable() {
 
 	const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() });
 
-	if (isLoading) return <p>Loading…</p>;
+        if (isLoading) return <p>Loading…</p>;
 
-	return (
-		<>
-			<button onClick={() => { setEditSensor(undefined); setOpen(true); }}>➕ Add sensor</button>
+        return (
+                <>
+                        <button
+                                className={styles.addButton}
+                                onClick={() => {
+                                        setEditSensor(undefined);
+                                        setOpen(true);
+                                }}
+                        >
+                                ➕ Add sensor
+                        </button>
 
-			<table>
-				<thead>
-					{table.getHeaderGroups().map((hg) => (
-						<tr key={hg.id}>
-							{hg.headers.map((h) => (
-								<th key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</th>
-							))}
-						</tr>
-					))}
-				</thead>
-				<tbody>
-					{table.getRowModel().rows.map((row) => (
-						<tr key={row.id}>
-							{row.getVisibleCells().map((cell) => (
-								<td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-							))}
-						</tr>
-					))}
-				</tbody>
-			</table>
+                        <table className={styles.table}>
+                                <thead>
+                                        {table.getHeaderGroups().map((hg) => (
+                                                <tr key={hg.id}>
+                                                        {hg.headers.map((h) => (
+                                                                <th key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</th>
+                                                        ))}
+                                                </tr>
+                                        ))}
+                                </thead>
+                                <tbody>
+                                        {table.getRowModel().rows.map((row) => (
+                                                <tr key={row.id}>
+                                                        {row.getVisibleCells().map((cell) => (
+                                                                <td key={cell.id} className={cell.column.id === 'actions' ? styles.actions : undefined}>
+                                                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                                </td>
+                                                        ))}
+                                                </tr>
+                                        ))}
+                                </tbody>
+                        </table>
 
 			<SensorFormDialog
 				open={isOpen}

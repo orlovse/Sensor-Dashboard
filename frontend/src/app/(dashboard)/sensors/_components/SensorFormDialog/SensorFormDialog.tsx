@@ -1,6 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Dialog } from 'radix-ui';
+import styles from './SensorFormDialog.module.css';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSensorMutations } from '@/hooks/useSensors';
@@ -31,22 +32,25 @@ export default function SensorFormDialog({ open, onOpenChange, initial }: {
 		action.then(() => onOpenChange(false));
 	};
 
-	return (
-		<Dialog.Root open={open} onOpenChange={onOpenChange}>
-			<Dialog.Portal>
-				<Dialog.Content>
-					<Dialog.Title>{initial ? 'Edit sensor' : 'New sensor'}</Dialog.Title>
-					<Dialog.Description id="sensor-desc">
-						{initial ? 'Update sensor parameters.' : 'Create a new sensor.'}
-					</Dialog.Description>
-					<form onSubmit={handleSubmit(onSubmit)} style={{ display: 'grid', gap: 12 }}>
-						<input placeholder="Name" {...register('name')} />
-						{errors.name && <span>{errors.name.message}</span>}
-						<input placeholder="Location" {...register('location')} />
-						<button disabled={isSubmitting}>{initial ? 'Save' : 'Create'}</button>
-					</form>
-				</Dialog.Content>
-			</Dialog.Portal>
-		</Dialog.Root>
-	);
+        return (
+                <Dialog.Root open={open} onOpenChange={onOpenChange}>
+                        <Dialog.Portal>
+                                <Dialog.Overlay className={styles.overlay} />
+                                <Dialog.Content className={styles.content}>
+                                        <Dialog.Title className={styles.title}>
+                                                {initial ? 'Edit sensor' : 'New sensor'}
+                                        </Dialog.Title>
+                                        <Dialog.Description id="sensor-desc">
+                                                {initial ? 'Update sensor parameters.' : 'Create a new sensor.'}
+                                        </Dialog.Description>
+                                        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+                                                <input placeholder="Name" {...register('name')} />
+                                                {errors.name && <span>{errors.name.message}</span>}
+                                                <input placeholder="Location" {...register('location')} />
+                                                <button disabled={isSubmitting}>{initial ? 'Save' : 'Create'}</button>
+                                        </form>
+                                </Dialog.Content>
+                        </Dialog.Portal>
+                </Dialog.Root>
+        );
 }
