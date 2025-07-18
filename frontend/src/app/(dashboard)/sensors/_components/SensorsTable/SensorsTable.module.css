@@ -17,16 +17,18 @@
   transform: scale(0.97);
 }
 
+
 .table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
+  border: 1px solid var(--border-color);
 }
 
 .table th,
 .table td {
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
   padding: 8px 12px;
   text-align: left;
 }
