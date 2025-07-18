@@ -37,11 +37,13 @@ app.include_router(readings.router)
 @app.websocket("/ws/readings")
 async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
+    sensor_id = int(ws.query_params.get("sensor_id", 1))
+
     try:
         while True:
             reading = {
                 "timestamp": datetime.utcnow().isoformat(),
-                "sensor_id": 1,
+                "sensor_id": sensor_id,
                 "temperature": round(random.uniform(20, 30), 2),
                 "humidity": round(random.uniform(40, 60), 1),
             }
