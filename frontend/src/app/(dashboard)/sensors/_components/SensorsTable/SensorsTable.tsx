@@ -4,11 +4,11 @@ import {
         useReactTable,
         getCoreRowModel,
         getSortedRowModel,
-        flexRender,
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import SensorFormDialog from '@/app/(dashboard)/sensors/_components/SensorFormDialog/SensorFormDialog';
 import { useSensorMutations, useSensors } from '@/hooks/useSensors';
+import DataTable from '@/components/DataTable/DataTable';
 import styles from './SensorsTable.module.css';
 import type { Sensor } from '@/services/api/types';
 import type { SortingState } from '@tanstack/react-table';
@@ -91,37 +91,12 @@ function SensorTable() {
                                                 ➕ Add sensor
                                         </button>
 
-                                        <table className={styles.table}>
-                                <thead>
-                                        {table.getHeaderGroups().map((hg) => (
-                                                <tr key={hg.id}>
-                                                        {hg.headers.map((h) => (
-                                                                <th
-                                                                        key={h.id}
-                                                                        onClick={h.column.getToggleSortingHandler()}
-                                                                        className={styles.headerCell}
-                                                                >
-                                                                        {flexRender(h.column.columnDef.header, h.getContext())}
-                                                                        {h.column.getIsSorted() ? (
-                                                                                h.column.getIsSorted() === 'asc' ? ' \u25B2' : ' \u25BC'
-                                                                        ) : ''}
-                                                                </th>
-                                                        ))}
-                                                </tr>
-                                        ))}
-                                </thead>
-                                <tbody>
-                                        {table.getRowModel().rows.map((row) => (
-                                                <tr key={row.id}>
-                                                        {row.getVisibleCells().map((cell) => (
-                                                                <td key={cell.id} className={cell.column.id === 'actions' ? styles.actions : undefined}>
-                                                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                                                </td>
-                                                        ))}
-                                                </tr>
-                                        ))}
-                                </tbody>
-                        </table>
+                                        <DataTable
+                                                table={table}
+                                                getCellClassName={(id) =>
+                                                        id === 'actions' ? styles.actions : undefined
+                                                }
+                                        />
                                 </>
                         )}
 

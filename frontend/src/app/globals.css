@@ -6,8 +6,8 @@
   --sidebar-color: #ffffff;
   --sidebar-text: #ffffff;
   --sidebar-hover: #23253a;
-  --accent: #7c3aed;
-  --content-bg: #f0f0f3;
+  --accent: #1a3027;
+  --content-bg: #f7f8fa;
   --border-color: #ccc;
 }
 
@@ -19,7 +19,7 @@
     --sidebar-bg: #13151f;
     --sidebar-text: #ffffff;
     --sidebar-hover: #23253a;
-    --content-bg: #1b1d2b;
+    --content-bg: #24263a;
     --border-color: #444;
   }
 }
