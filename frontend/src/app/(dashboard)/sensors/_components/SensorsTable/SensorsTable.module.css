@@ -20,9 +20,36 @@
   text-align: left;
 }
 
+.actions {
+  display: flex;
+  gap: 4px;
+}
+
 .actions button {
   background: none;
   border: none;
   cursor: pointer;
-  margin-right: 4px;
+}
+
+.iconButton {
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.iconButton:hover {
+  background: var(--sidebar-hover);
+}
+
+.iconButton:active {
+  transform: scale(0.95);
+}
+
+.delete {
+  color: #ef4444;
+}
+
+.headerCell {
+  cursor: pointer;
+  user-select: none;
 }

@@ -41,4 +41,13 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.form button:hover {
+  background: color-mix(in srgb, var(--accent) 80%, #ffffff);
+}
+
+.form button:active {
+  transform: scale(0.97);
 }

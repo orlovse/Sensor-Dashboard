@@ -16,11 +16,16 @@ export async function request<T>(
 		...init,
 	});
 
-	if (!res.ok) {
-		throw new Error(`${res.status}: ${res.statusText}`);
-	}
+        if (!res.ok) {
+                throw new Error(`${res.status}: ${res.statusText}`);
+        }
 
-	return res.json();
+        if (res.status === 204) {
+                // no content
+                return null as T;
+        }
+
+        return res.json();
 }
 
 export const http = {

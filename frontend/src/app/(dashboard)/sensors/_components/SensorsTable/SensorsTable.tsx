@@ -1,9 +1,11 @@
 'use client';
 import {
-	createColumnHelper,
-	useReactTable,
-	getCoreRowModel,
-	flexRender,
+        createColumnHelper,
+        useReactTable,
+        getCoreRowModel,
+        getSortedRowModel,
+        flexRender,
+        SortingState,
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import SensorFormDialog from '@/app/(dashboard)/sensors/_components/SensorFormDialog/SensorFormDialog';
@@ -14,26 +16,58 @@ import styles from './SensorsTable.module.css';
 function SensorTable() {
 	const { data = [], isLoading } = useSensors();
 	const { remove } = useSensorMutations();
-	const [editSensor, setEditSensor] = useState<Sensor | undefined>(undefined);
-	const [isOpen, setOpen] = useState(false);
+        const [editSensor, setEditSensor] = useState<Sensor | undefined>(undefined);
+        const [isOpen, setOpen] = useState(false);
+        const [sorting, setSorting] = useState<SortingState>([]);
 
 	const column = createColumnHelper<Sensor>();
-	const columns = [
-		column.accessor('id', { header: 'ID' }),
-		column.accessor('name', { header: 'Name' }),
-		column.accessor('location', { header: 'Location' }),
-		column.display({
-			id: 'actions',
-			cell: ({ row }) => (
-    <>
-        <button onClick={() => { setEditSensor(row.original); setOpen(true); }}>✏️</button>
-        <button onClick={() => remove.mutate(row.original.id)}>🗑️</button>
-    </>
-			),
-		}),
-	];
+        const columns = [
+                column.accessor('id', {
+                        header: () => 'ID',
+                        sortingFn: 'auto',
+                }),
+                column.accessor('name', {
+                        header: () => 'Name',
+                        sortingFn: 'auto',
+                }),
+                column.accessor('location', {
+                        header: () => 'Location',
+                        sortingFn: 'auto',
+                }),
+                column.display({
+                        id: 'actions',
+                        cell: ({ row }) => (
+                                <div className={styles.actions}>
+                                        <button
+                                                className={styles.iconButton}
+                                                aria-label="Edit"
+                                                onClick={() => {
+                                                        setEditSensor(row.original);
+                                                        setOpen(true);
+                                                }}
+                                        >
+                                                ✏️
+                                        </button>
+                                        <button
+                                                className={`${styles.iconButton} ${styles.delete}`}
+                                                aria-label="Delete"
+                                                onClick={() => remove.mutate(row.original.id)}
+                                        >
+                                                🗑️
+                                        </button>
+                                </div>
+                        ),
+                }),
+        ];
 
-	const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() });
+        const table = useReactTable({
+                data,
+                columns,
+                state: { sorting },
+                onSortingChange: setSorting,
+                getCoreRowModel: getCoreRowModel(),
+                getSortedRowModel: getSortedRowModel(),
+        });
 
         if (isLoading) return <p>Loading…</p>;
 
@@ -54,7 +88,16 @@ function SensorTable() {
                                         {table.getHeaderGroups().map((hg) => (
                                                 <tr key={hg.id}>
                                                         {hg.headers.map((h) => (
-                                                                <th key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</th>
+                                                                <th
+                                                                        key={h.id}
+                                                                        onClick={h.column.getToggleSortingHandler()}
+                                                                        className={styles.headerCell}
+                                                                >
+                                                                        {flexRender(h.column.columnDef.header, h.getContext())}
+                                                                        {h.column.getIsSorted() ? (
+                                                                                h.column.getIsSorted() === 'asc' ? ' \u25B2' : ' \u25BC'
+                                                                        ) : ''}
+                                                                </th>
                                                         ))}
                                                 </tr>
                                         ))}
