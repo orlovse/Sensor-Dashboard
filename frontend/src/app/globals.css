@@ -1,5 +1,4 @@
 :root {
-  /* light mode is default */
   --background: #ffffff;
   --foreground: #1a1a1a;
   --sidebar-bg: #13151f;
@@ -15,7 +14,6 @@
   :root {
     --background: #0f0f16;
     --foreground: #f5f5f7;
-    /* sidebar remains dark in both themes */
     --sidebar-bg: #13151f;
     --sidebar-text: #ffffff;
     --sidebar-hover: #23253a;
