@@ -40,7 +40,7 @@ function ReadingsTable({ data, isLoading }: {
 	if (isLoading) return <p>Loading data…</p>;
 
 	return (
-    <div style={{ maxHeight: 260, overflowY: 'auto', marginTop: 24 }}>
+    	<div style={{ maxHeight: 260, overflowY: 'auto', marginTop: 24 }}>
         <table>
             <thead>
                 {table.getHeaderGroups().map((hg) => (

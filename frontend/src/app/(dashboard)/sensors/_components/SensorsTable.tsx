@@ -36,30 +36,30 @@ function SensorTable() {
 	if (isLoading) return <p>Loading…</p>;
 
 	return (
-    <>
-        <button onClick={() => { setEditSensor(undefined); setOpen(true); }}>➕ Add sensor</button>
+		<>
+			<button onClick={() => { setEditSensor(undefined); setOpen(true); }}>➕ Add sensor</button>
 
-        <table>
-            <thead>
-                {table.getHeaderGroups().map((hg) => (
-                    <tr key={hg.id}>
-                        {hg.headers.map((h) => (
-                            <th key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</th>
-						))}
-                    </tr>
-				))}
-            </thead>
-            <tbody>
-                {table.getRowModel().rows.map((row) => (
-                    <tr key={row.id}>
-                        {row.getVisibleCells().map((cell) => (
-                            <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-						))}
-                    </tr>
-				))}
-            </tbody>
-        </table>
-    </>
+			<table>
+				<thead>
+					{table.getHeaderGroups().map((hg) => (
+						<tr key={hg.id}>
+							{hg.headers.map((h) => (
+								<th key={h.id}>{flexRender(h.column.columnDef.header, h.getContext())}</th>
+							))}
+						</tr>
+					))}
+				</thead>
+				<tbody>
+					{table.getRowModel().rows.map((row) => (
+						<tr key={row.id}>
+							{row.getVisibleCells().map((cell) => (
+								<td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</>
 	);
 }
 
