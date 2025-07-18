@@ -1,11 +1,11 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Dialog } from 'radix-ui';
-import styles from './SensorFormDialog.module.css';
-import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSensorMutations } from '@/hooks/useSensors';
+import styles from './SensorFormDialog.module.css';
 
 const schema = z.object({
 	name: z.string().min(2),

@@ -1,7 +1,7 @@
 'use client';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
-import type { Reading } from '@/services/api/types';
 import styles from './Chart.module.css';
+import type { Reading } from '@/services/api/types';
 
 function Chart({ data }: { data: Reading[] }) {
         return (

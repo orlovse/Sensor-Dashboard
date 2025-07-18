@@ -7,9 +7,9 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
+import styles from './ReadingsTable.module.css';
 import type { Reading } from '@/services/api/types';
 import type { ColumnDef, SortingState } from '@tanstack/react-table';
-import styles from './ReadingsTable.module.css';
 
 const columns: ColumnDef<Reading>[] = [
 	{

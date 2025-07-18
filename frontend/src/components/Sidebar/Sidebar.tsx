@@ -7,8 +7,6 @@ import styles from './Sidebar.module.css';
 export default function Sidebar() {
     const pathname = usePathname();
 
-    console.log('pathname', pathname)
-
     const links = [
         { href: '/dashboard', label: 'Dashboard' },
         { href: '/sensors', label: 'Sensors' },
