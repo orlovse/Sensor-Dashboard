@@ -1,22 +1,26 @@
 :root {
-  --background: #0f0f16;
-  --foreground: #f5f5f7;
+  /* light mode is default */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
   --sidebar-bg: #13151f;
   --sidebar-color: #ffffff;
   --sidebar-text: #ffffff;
   --sidebar-hover: #23253a;
   --accent: #7c3aed;
-  --content-bg: #1b1d2b;
+  --content-bg: #f0f0f3;
+  --border-color: #ccc;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0f0f16;
     --foreground: #f5f5f7;
+    /* sidebar remains dark in both themes */
     --sidebar-bg: #13151f;
     --sidebar-text: #ffffff;
     --sidebar-hover: #23253a;
     --content-bg: #1b1d2b;
+    --border-color: #444;
   }
 }
 
@@ -49,6 +53,10 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+html {
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {

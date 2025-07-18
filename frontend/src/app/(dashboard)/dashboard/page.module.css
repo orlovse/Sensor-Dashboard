@@ -27,7 +27,7 @@
 .sensorSelect select {
   padding: 6px 12px;
   border-radius: 8px;
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
   background: var(--content-bg);
   color: var(--foreground);
 }
