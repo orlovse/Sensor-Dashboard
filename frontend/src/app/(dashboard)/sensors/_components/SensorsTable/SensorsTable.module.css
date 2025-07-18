@@ -1,21 +1,32 @@
 .addButton {
   margin-bottom: 16px;
-  padding: 6px 12px;
+  padding: 8px 16px;
   background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.addButton:hover {
+  background: color-mix(in srgb, var(--accent) 80%, #ffffff);
+}
+
+.addButton:active {
+  transform: scale(0.97);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .table th,
 .table td {
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   padding: 8px 12px;
   text-align: left;
 }
@@ -33,7 +44,7 @@
 
 .iconButton {
   padding: 4px;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: background 0.2s, transform 0.1s;
 }
 
@@ -52,4 +63,11 @@
 .headerCell {
   cursor: pointer;
   user-select: none;
+}
+
+.empty {
+  background: var(--content-bg);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
 }

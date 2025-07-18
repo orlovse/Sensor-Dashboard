@@ -26,15 +26,22 @@
 
 .sensorSelect select {
   padding: 6px 12px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 1px solid #444;
   background: var(--content-bg);
   color: var(--foreground);
 }
 
 .card {
   background: var(--content-bg);
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.emptyState {
+  background: var(--content-bg);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
 }
