@@ -15,7 +15,9 @@ export function useReadings(sensorId: number) {
 	useEffect(() => {
 		if (!sensorId) return;
 
-		const ws = new WebSocket(`${location.origin.replace(/^http/, 'ws')}/ws/readings`);
+                const ws = new WebSocket(
+                        `${location.origin.replace(/^http/, 'ws')}/ws/readings?sensor_id=${sensorId}`,
+                );
 
 		ws.onmessage = (evt) => {
 			const reading: Reading = JSON.parse(evt.data);
@@ -27,7 +29,11 @@ export function useReadings(sensorId: number) {
 			]);
 		};
 
-		return () => ws.close();
+                return () => {
+                        if (ws.readyState <= WebSocket.OPEN) {
+                                ws.close();
+                        }
+                };
 	}, [sensorId, qc]);
 
 	return query;
