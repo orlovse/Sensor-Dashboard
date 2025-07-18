@@ -7,8 +7,8 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import SensorFormDialog from '@/app/(dashboard)/sensors/_components/SensorFormDialog/SensorFormDialog';
-import { useSensorMutations, useSensors } from '@/hooks/useSensors';
 import DataTable from '@/components/DataTable/DataTable';
+import { useSensorMutations, useSensors } from '@/hooks/useSensors';
 import styles from './SensorsTable.module.css';
 import type { Sensor } from '@/services/api/types';
 import type { SortingState } from '@tanstack/react-table';

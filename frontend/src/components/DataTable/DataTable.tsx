@@ -1,8 +1,8 @@
 'use client';
 
-import { flexRender, Table } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 import styles from './DataTable.module.css';
-import type { RowData } from '@tanstack/react-table';
+import type { RowData , Table } from '@tanstack/react-table';
 
 interface DataTableProps<T extends RowData> {
   table: Table<T>;
