@@ -91,12 +91,7 @@ function SensorTable() {
                                                 ➕ Add sensor
                                         </button>
 
-                                        <DataTable
-                                                table={table}
-                                                getCellClassName={(id) =>
-                                                        id === 'actions' ? styles.actions : undefined
-                                                }
-                                        />
+                                        <DataTable table={table} />
                                 </>
                         )}
 
