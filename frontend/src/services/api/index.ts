@@ -21,7 +21,6 @@ export async function request<T>(
         }
 
         if (res.status === 204) {
-                // no content
                 return null as T;
         }
 
